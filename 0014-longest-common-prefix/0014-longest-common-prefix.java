@@ -65,11 +65,31 @@ class Solution {
             return "";
         }
 
-        Trie trie = new Trie();
-        for (String str : strs) {
-            trie.insert(str);
+        // Trie trie = new Trie();
+        // for (String str : strs) {
+        //     trie.insert(str);
+        // }
+        // return trie.longestPrefix();
+
+
+        String prefix = strs[0];
+        int idx = strs[0].length();
+        for(int i = 1; i < strs.length; i++){
+            
+            if(strs[i].length() < prefix.length()){
+                idx = strs[i].length();
+            }
+            for(int j = 0; j < idx; j++){
+                if(prefix.charAt(j) != strs[i].charAt(j)){
+                    idx = j;
+                    break;
+                }
+            }
+
+            prefix = prefix.substring(0,idx);
+            
         }
-        return trie.longestPrefix();
+        return prefix;
     }
 
 
